@@ -1,38 +1,53 @@
 <template>
-    <v-layout>
-        <v-flex xs3>
-            <!-- Приоритеты можно сделать окрашиванием карточки в какой-нибудь цвет -->
-            <v-card height="150px">
-                <h6 class="pa-2``"> #{{ task.id }} {{ task.title }}</h6>
+    <v-flex xs2>
+        <v-card class="pa-2 task">
+            <router-link tag="button" to="/task">
+                <h6 class="task__header">#{{ task.id }} {{ task.title }}</h6>
+            </router-link>
 
-                <v-flex xs3>
-                    <v-card xs2 offset5 v-bind:class="{red: true, 'accent-2': true}" height="30px"></v-card>
-                </v-flex>
+            <p class="text-xs-right">Исполнитель: {{ task.assignee }} </p>
 
-                <p class="pa-2 text-xs-right">Исполнитель: {{ task.assignee }} </p>
-            </v-card>
-        </v-flex>
-
-    </v-layout>
+            <v-flex>
+                <v-card class="green accent-2" height="10px"></v-card>
+            </v-flex>
+        </v-card>
+    </v-flex>
 </template>
 
 <script>
+
+import { bus } from './../../main.js'
+
+
 export default {
+
+    props: ['task'],
+
     data() {
         return {
-            task: {
-                id: 34,
-                title: 'Отнести кольцо в Мордор и уничтожить его в Роковой горе',
-                assignee: 'Фродо'
-            },
+        }
+    },
+    methods: {
+        openDetails() {
+            bus.$emit('openDetails', this.task);
+            console.log('2');
         }
     }
 }
 </script>
 
 <style lang="scss">
-h6 {
-    color: #eee;
-    font-size: 18px;
+.task {
+
+
+    &__header {
+        color: #eee;
+        font-size: 18px;
+
+        &:hover {
+            color: #1976d2;
+            cursor: pointer;
+        }
+    }
 }
 </style>

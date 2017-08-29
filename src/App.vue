@@ -5,7 +5,9 @@
 
     <main>
       <v-container fluid>
-        <app-task-dashboard></app-task-dashboard>
+
+        <router-view></router-view>
+
       </v-container>
     </main>
 
@@ -14,12 +16,10 @@
 
 <script>
 
-import TaskDashboard from './components/tasks/TaskDashboard.vue'
 import Header from './components/Header.vue'
 export default {
 
   components: {
-    'app-task-dashboard': TaskDashboard,
     'app-header': Header
   },
 
