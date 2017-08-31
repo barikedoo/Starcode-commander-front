@@ -1,7 +1,7 @@
 <template>
     <v-flex xs2>
         <v-card class="pa-2 task">
-            <router-link tag="button" to="/task">
+            <router-link tag="button" :to="{name: 'task-details', params: {id:task.id}}">
                 <h6 class="task__header">#{{ task.id }} {{ task.title }}</h6>
             </router-link>
 
@@ -27,12 +27,6 @@ export default {
         return {
         }
     },
-    methods: {
-        openDetails() {
-            bus.$emit('openDetails', this.task);
-            console.log('2');
-        }
-    }
 }
 </script>
 

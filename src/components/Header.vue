@@ -46,29 +46,25 @@
 
         <v-toolbar dark class="primary">
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <v-toolbar-title class="white--text">Starcode commander</v-toolbar-title>
+            <router-link to="/tasks-dashboard">
+                <v-toolbar-title class="white--text">Starcode commander</v-toolbar-title>
+            </router-link >
             <v-spacer></v-spacer>
             <v-flex xs3 class="pt-3">
                 <v-select v-bind:items="projects.projectsAvailable" v-model="projects.projectActive" label="Выберите проект" single-line bottom></v-select>
             </v-flex>
 
-            <router-link to="/form">
-                <v-btn icon>
-                    <v-icon>search</v-icon>
-                </v-btn>
-            </router-link>
+            <v-btn icon>
+                <v-icon>search</v-icon>
+            </v-btn>
 
-            <router-link to="/tasks-dashboard">
-                <v-btn icon>
-                    <v-icon>apps</v-icon>
-                </v-btn>
-            </router-link>
+            <v-btn icon>
+                <v-icon>apps</v-icon>
+            </v-btn>
 
-            <router-link to="/task">
-                <v-btn icon>
-                    <v-icon>refresh</v-icon>
-                </v-btn>
-            </router-link>
+            <v-btn icon>
+                <v-icon>refresh</v-icon>
+            </v-btn>
 
             <v-btn icon>
                 <v-icon>accessible</v-icon>
