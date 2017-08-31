@@ -23,7 +23,7 @@ export default {
 
     
     created() {
-        console.log('Created');
+        console.log('Created with id' + this.$route.params.id);
     }
 }
 </script>
