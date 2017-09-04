@@ -1,7 +1,7 @@
 <template>
     <v-flex xs2>
         <v-card class="pa-2 task">
-            <router-link tag="button" :to="{name: 'task-details', params: {id:task.id}}">
+            <router-link tag="button" :to="{name: 'task-details', params: {id:task.id}, query:{id:task.id}}">
                 <h6 class="task__header">#{{ task.id }} {{ task.title }}</h6>
             </router-link>
 

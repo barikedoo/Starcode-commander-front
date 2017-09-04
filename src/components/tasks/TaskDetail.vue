@@ -5,7 +5,7 @@
                 </v-card-media>
                 <v-card-title primary-title>
                     <div>
-                        <h3 class="headline mb-0"># {{$route.params.id}}</h3>
+                        <h3 class="headline mb-0"># {{$route.query.id}}</h3>
                         <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
                     </div>
                 </v-card-title>
@@ -15,19 +15,29 @@
                 </v-card-actions>
             </v-card>
         </v-flex>
-    </v-layout>
+    </v-layout> 
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+        }
+    },
 
-    
     created() {
-        console.log('Created with id' + this.$route.params.id);
+        
+    },
+    beforeRouteEnter(from,to,next) {
+        console.log('Router entered');
+        next();
     }
+
 }
 </script>
 
 <style>
-
+.headline {
+    color: #fff;
+}
 </style>

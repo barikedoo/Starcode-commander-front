@@ -46,15 +46,18 @@
 
         <v-toolbar dark class="primary">
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <router-link to="/tasks-dashboard">
+            <router-link to="/">
                 <v-toolbar-title class="white--text">Starcode commander</v-toolbar-title>
-            </router-link >
+            </router-link>
             <v-spacer></v-spacer>
+
             <v-flex xs3 class="pt-3">
-                <v-select v-bind:items="projects.projectsAvailable" v-model="projects.projectActive" label="Выберите проект" single-line bottom></v-select>
+                <router-link :to="{path:'/project', params:{id:activeProject}, query:{id:activeProject}}">
+                    <v-select v-bind:items="allProjects" v-model="activeProject" item-text="name" item-value="id" label="Выберите проект" single-line bottom></v-select>
+                </router-link>
             </v-flex>
 
-            <v-btn icon>
+            <v-btn icon @click="log">
                 <v-icon>search</v-icon>
             </v-btn>
 
@@ -84,13 +87,17 @@ export default {
             ],
             mini: false,
             right: null,
-
-            projects: {
-                projectsAvailable: [
-                    'Истра', 'Estimates', 'Today.travel', 'Loads', 'ГПБ'
-                ],
-                projectActive: null
-            }
+            activeProject: null,
+        }
+    },
+    methods: {
+        log() {
+            console.log(this.activeProject);
+        }
+    },
+    computed: {
+        allProjects() {
+            return this.$store.getters.allProjects;
         }
     }
 }
