@@ -52,12 +52,17 @@
             <v-spacer></v-spacer>
 
             <v-flex xs3 class="pt-3">
-                <router-link :to="{path:'/project', params:{id:activeProject}, query:{id:activeProject}}">
-                    <v-select v-bind:items="allProjects" v-model="activeProject" item-text="name" item-value="id" label="Выберите проект" single-line bottom></v-select>
-                </router-link>
+                    <v-select 
+                    v-bind:items="allProjects" 
+                    v-model="activeProject" 
+                    item-text="name" 
+                    item-value="id" 
+                    label="Выберите проект" 
+                    single-line bottom
+                    @input="changeRoute"></v-select>
             </v-flex>
 
-            <v-btn icon @click="log">
+            <v-btn icon>
                 <v-icon>search</v-icon>
             </v-btn>
 
@@ -91,8 +96,9 @@ export default {
         }
     },
     methods: {
-        log() {
-            console.log(this.activeProject);
+        changeRoute() {
+            this.$router.push({name:'project', query:{id:this.activeProject}}, )
+
         }
     },
     computed: {
