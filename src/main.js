@@ -3,7 +3,7 @@ import App from './App.vue'
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
 import {routes} from './routes'
-import {store} from './store/store'
+import store from './store/store'
 
 Vue.use(Vuetify)
 Vue.use(VueRouter)

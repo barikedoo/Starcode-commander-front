@@ -6,31 +6,44 @@
                 <v-card-title primary-title>
                     <div>
                         <h3 class="headline mb-0"># {{$route.query.id}}</h3>
-                        <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
+                        <div>{{activeTask.description}}</div>
                     </div>
                 </v-card-title>
                 <v-card-actions>
-                    <v-btn flat class="orange--text">Share</v-btn>
-                    <v-btn flat class="orange--text">Explore</v-btn>
+                    <router-link :to="{path:'project'}">
+                        <v-btn flat class="orange--text">Share</v-btn>
+                    </router-link>
+                    <v-btn flat class="orange--text" @click="log">Console me</v-btn>
                 </v-card-actions>
             </v-card>
         </v-flex>
-    </v-layout> 
+    </v-layout>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
+    computed: {
+        activeProject() {
+            return this.$store.getters.activeProject;
+        },
+        activeTask() {
+            let tasks = this.$store.getters.activeProject.tasks;
+            let vm = this;
+            return tasks.find(function(task) {
+                if (task.id == vm.$route.query.id) {
+                    return task;
+                } else {
+                    return
+                }
+            });
+
         }
     },
-
-    created() {
-        
-    },
-    beforeRouteEnter(from,to,next) {
-        console.log('Router entered');
-        next();
+    methods: {
+        log() {
+            console.log(this.$route.query.id);
+            console.log(this.activeTask);
+        }
     }
 
 }
