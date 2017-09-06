@@ -7,7 +7,7 @@ const state = {
         { id: 4, name: 'ГПБ' },
     ],
     activeProject: {
-        id: null,
+        id: 777,
         name: 'Статичный проект из $store',
         tasks: [
             {
@@ -36,7 +36,7 @@ const state = {
             },
     
           ]
-    }
+    },
 };
 
 const getters = {

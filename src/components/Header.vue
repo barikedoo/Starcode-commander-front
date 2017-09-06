@@ -46,7 +46,7 @@
 
         <v-toolbar dark class="primary">
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-            <router-link to="/">
+            <router-link to="/home">
                 <v-toolbar-title class="white--text">Starcode commander</v-toolbar-title>
             </router-link>
             <v-spacer></v-spacer>
@@ -59,14 +59,14 @@
                     item-value="id" 
                     label="Выберите проект" 
                     single-line bottom
-                    @input="changeRoute"></v-select>
+                    @input="changeProject"></v-select>
             </v-flex>
 
-            <v-btn icon>
-                <v-icon>search</v-icon>
+            <v-btn icon @click="addNew" v-if="showAddButton ">
+                <v-icon>add</v-icon>
             </v-btn>
 
-            <v-btn icon>
+            <!-- <v-btn icon>
                 <v-icon>apps</v-icon>
             </v-btn>
 
@@ -76,7 +76,7 @@
 
             <v-btn icon>
                 <v-icon>accessible</v-icon>
-            </v-btn>
+            </v-btn> -->
         </v-toolbar>
     </v-layout>
 </template>
@@ -96,15 +96,32 @@ export default {
         }
     },
     methods: {
-        changeRoute() {
+        changeProject() {
             this.$router.push({name:'project', query:{id:this.activeProject}}, )
+        },
 
+        addNew() {
+            if(this.$route.path.match('/project')) {
+                this.$router.push({name:'add-task'});
+            } else if(this.$route.path.match('/home')) {
+                alert('Раздел "Добавление новых проектов" в разработке')
+            }
+            
         }
     },
     computed: {
         allProjects() {
             return this.$store.getters.allProjects;
+        },
+
+        showAddButton() {
+            if(this.$route.path.match('/task')) {
+                return false;
+            }else {
+                return true;
+            };
         }
+
     }
 }
 </script>

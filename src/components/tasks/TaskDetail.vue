@@ -10,10 +10,10 @@
                     </div>
                 </v-card-title>
                 <v-card-actions>
-                    <router-link :to="{path:'project'}">
-                        <v-btn flat class="orange--text">Share</v-btn>
+                    <router-link :to="{path:'project', query:{id:activeProject.id}}">
+                        <v-btn flat class="green--text">Назад к проекту</v-btn>
                     </router-link>
-                    <v-btn flat class="orange--text" @click="log">Console me</v-btn>
+                    <v-btn flat class="green--text" @click="log">чО там в консоле?</v-btn>
                 </v-card-actions>
             </v-card>
         </v-flex>

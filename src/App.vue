@@ -1,26 +1,34 @@
 <template>
-  <v-app id="example-8" dark toolbar>
+  <div id="app">
+    <v-app id="application" dark>
 
-    <app-header></app-header>
+      <app-header></app-header>
 
-    <main>
-      <v-container fluid>
-        <transition name="slide" mode="out-in">
-          <router-view></router-view>
-        </transition>
-      </v-container>
-    </main>
+          <main>
+            <v-container fluid>
+              <transition name="slide" mode="out-in">
+                <router-view></router-view>
+                
 
-  </v-app>
+              </transition>
+            </v-container>
+
+          </main>
+
+    </v-app>
+  </div>
 </template>
 
 <script>
 
 import Header from './components/Header.vue'
+import AddTask from './components/tasks/AddTask.vue'
+
 export default {
 
   components: {
-    'app-header': Header
+    'app-header': Header,
+    'app-add': AddTask
   },
 
   data() {
@@ -36,13 +44,16 @@ export default {
 </style>
 
 <style lang="scss">
+a {
+  text-decoration: none;
+}
 
 .slide-enter-active {
-  animation: slide-in 200ms  ease-out forwards;
+  animation: slide-in 200ms ease-out forwards;
 }
 
 .slide-leave-active {
-  animation: slide-out 200ms  ease-out forwards;
+  animation: slide-out 200ms ease-out forwards;
 }
 
 @keyframes slide-in {
@@ -65,7 +76,6 @@ export default {
     transform: translateY(-30px);
     opacity: 0;
   }
-
 }
 </style>
 
